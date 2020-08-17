@@ -22,7 +22,7 @@ def grab_page():
     # print(coverpage_news)
     # print(len(coverpage_news))
 
-    number_of_articles = 5
+    number_of_articles = 10
     news_contents = []
     list_links = []
     list_titles = []

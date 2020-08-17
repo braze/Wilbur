@@ -1,7 +1,7 @@
 import guardian
 import habr
 import json
-from datetime import date
+import datetime
 import pyrebase
 
 config = {
@@ -23,8 +23,6 @@ def main():
 
     storage.child(path_on_cloud).download(path_on_cloud)
 
-    today = date.today()
-
     x = habr.grab_page()
     y = guardian.grab_page()
     z = x.append(y, ignore_index=True)
@@ -37,7 +35,7 @@ def main():
         thumb = z.iloc[i]['Img_url']
         photo = z.iloc[i]['Img_url']
         aspect_ratio = 1.5
-        published_date = today.strftime("%B %d, %Y")
+        published_date = datetime.datetime.utcnow().isoformat()[:-3]
         article_obj = {"id": str(i + 1), "title": title, "author": author, "body": body, "thumb": thumb, "photo": photo,
                        "aspect_ratio": aspect_ratio, "published_date": published_date}
         list_of_articles.append(article_obj)
